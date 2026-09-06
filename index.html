@@ -12,12 +12,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🔒 Admin — Kelola Jadwal Kuliah</title>
 <link rel="stylesheet" href="style.css">
+<script>
+  (function () {
+    var saved = localStorage.getItem('jadwal-theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
 </head>
 <body>
 
   <!-- ====== LAYAR LOGIN ====== -->
   <div id="loginScreen">
     <main class="board">
+      <div style="display:flex; justify-content:flex-end; padding-top:16px;">
+        <button class="theme-toggle" id="themeToggleLogin" type="button" aria-label="Ganti mode terang/gelap">
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </button>
+      </div>
       <div class="login-card">
         <h2>Masuk Admin</h2>
         <p>Halaman ini hanya untuk pengelola jadwal kuliah.</p>
@@ -43,14 +56,20 @@
       <div class="admin-toolbar">
         <div>
           <p class="board__kicker">Panel Pengelola</p>
-          <h1 style="font-size:26px;">Kelola Jadwal Kuliah</h1>
+          <h1 style="font-size:24px;">Kelola Jadwal Kuliah</h1>
         </div>
-        <button id="logoutBtn" class="btn btn--ghost">Keluar</button>
+        <div style="display:flex; gap:10px; align-items:center;">
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti mode terang/gelap">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+          <button id="logoutBtn" class="btn btn--ghost">Keluar</button>
+        </div>
       </div>
 
       <div class="panel">
         <h2 style="font-size:15px; margin-bottom:6px;">Status Data</h2>
-        <p style="font-size:13.5px; color:var(--paper-dim); margin:0 0 14px;">
+        <p style="font-size:13.5px; color:var(--ink-dim); margin:0 0 14px;">
           Semua perubahan di sini langsung tersimpan ke server dan otomatis muncul
           di situs publik — tidak perlu unggah file manual lagi.
         </p>
