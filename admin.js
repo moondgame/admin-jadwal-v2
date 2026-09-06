@@ -34,6 +34,16 @@ const JURUSAN_INFO = {
 const ICON_BACK = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>`;
 const ICON_ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>`;
 
+// --- ganti mode terang / gelap (dua tombol: layar login & layar admin) ---
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('jadwal-theme', next);
+}
+document.getElementById('themeToggleLogin').addEventListener('click', toggleTheme);
+document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+
 let data = [];
 let editingId = null;
 let state = { jurusan: null, kelas: null };
@@ -206,16 +216,18 @@ function renderJurusanChoice() {
       <button class="choice-card" data-jurusan="TI">
         <div class="choice-card__top">
           <h3>Teknik Informatika</h3>
-          <span class="choice-card__arrow">${ICON_ARROW}</span>
+          <span class="choice-card__badge">TI</span>
         </div>
         <p>${JURUSAN_INFO.TI.desk}</p>
+        <div class="choice-card__foot">Kelola jadwal ${ICON_ARROW}</div>
       </button>
       <button class="choice-card" data-jurusan="SI">
         <div class="choice-card__top">
           <h3>Sistem Informasi</h3>
-          <span class="choice-card__arrow">${ICON_ARROW}</span>
+          <span class="choice-card__badge">SI</span>
         </div>
         <p>${JURUSAN_INFO.SI.desk}</p>
+        <div class="choice-card__foot">Kelola jadwal ${ICON_ARROW}</div>
       </button>
     </div>`;
 
@@ -230,16 +242,18 @@ function renderKelasChoice() {
       <button class="choice-card" data-kelas="A">
         <div class="choice-card__top">
           <h3>Kelas TI A</h3>
-          <span class="choice-card__arrow">${ICON_ARROW}</span>
+          <span class="choice-card__badge">A</span>
         </div>
         <p>Atur jadwal kuliah kelas A.</p>
+        <div class="choice-card__foot">Kelola jadwal ${ICON_ARROW}</div>
       </button>
       <button class="choice-card" data-kelas="B">
         <div class="choice-card__top">
           <h3>Kelas TI B</h3>
-          <span class="choice-card__arrow">${ICON_ARROW}</span>
+          <span class="choice-card__badge">B</span>
         </div>
         <p>Atur jadwal kuliah kelas B.</p>
+        <div class="choice-card__foot">Kelola jadwal ${ICON_ARROW}</div>
       </button>
     </div>`;
 
@@ -406,7 +420,7 @@ function renderTable() {
   if (!body) return;
   const rows = segmentRows();
   if (rows.length === 0) {
-    body.innerHTML = `<tr><td colspan="5" style="color:var(--paper-dim);">Belum ada jadwal di segmen ini.</td></tr>`;
+    body.innerHTML = `<tr><td colspan="5" style="color:var(--ink-dim);">Belum ada jadwal di segmen ini.</td></tr>`;
     return;
   }
   body.innerHTML = rows.map(item => `
