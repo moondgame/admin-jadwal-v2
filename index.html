@@ -3,6 +3,12 @@
   SITUS ADMIN — KELOLA JADWAL (hanya untuk pengelola)
   Upload folder ini ke repo: Admin-web-jadwal
   JANGAN dicampur dengan file dari folder jadwal-publik!
+
+  Catatan: hanya tampilan (index.html + style.css) yang diperbarui.
+  admin.js dan firebase-config.js TIDAK berubah — semua id yang dipakai
+  admin.js (loginScreen, adminScreen, loginForm, loginError,
+  loginSubmitBtn, logoutBtn, boardMain, trail, backBtnSlot, statusPill,
+  importInput, exportBtn, themeToggle, themeToggleLogin) tetap sama persis.
   ============================================
 -->
 <!DOCTYPE html>
@@ -55,8 +61,8 @@
     <main class="board admin-shell">
       <div class="admin-toolbar">
         <div>
-          <p class="board__kicker">Panel Pengelola</p>
-          <h1 style="font-size:24px;">Kelola Jadwal Kuliah</h1>
+          <p class="board__kicker">Panel pengelola</p>
+          <h1 style="font-size:25px;">Kelola Jadwal Kuliah</h1>
         </div>
         <div style="display:flex; gap:10px; align-items:center;">
           <button class="theme-toggle" id="themeToggle" type="button" aria-label="Ganti mode terang/gelap">
